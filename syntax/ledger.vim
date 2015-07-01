@@ -8,7 +8,12 @@ syntax clear
 " there are no keywords
 " syn keyword foo bar baz
 
-syn match lgrTxHead    /^\d.*/ transparent
+syn match lgrTxHead    /^\d.*/ transparent contains=lgrDates
+syn match lgrDates /^[^ ]\+/ contained contains=lgrDate nextgroup=lgrType
+syn match lgrDate /\d\+\([-/.]\d\+\)*/ contained
+syn match lgrType /\([^)]*)\)\?/ contained nextgroup=lgrPayee
+syn match lgrPayee /.*/ contained
+
 syn match lgrTxEntry   /^ .*/ transparent contains=lgrAccount,lgrAmount
 syn match lgrTxComment /^ \+[#;].*/
 syn match lgrComment   /^[#;].*/
@@ -18,10 +23,12 @@ syn match lgrAmount /-\?\d\+\(\.\d\+\)\?\( \a\+\)\?/ contained contains=lgrNumbe
 syn match lgrNumber /-\?\d\+\(\.\d\+\)\?/ contained
 syn match lgrCurrency /\a\+/ contained
 
-syn match lgrDate /^\d\+\([-/.]\d\+\)\*/
+hi link lgrDate      Statement
+hi link lgrType      Type
+" hi link lgrPayee   Ignore
 
 hi link lgrComment   Comment
-hi link lgrTxComment Special
+hi link lgrTxComment SpecialComment
 hi link lgrAccount   Identifier
 hi link lgrNumber    Number
 hi link lgrCurrency  Type
