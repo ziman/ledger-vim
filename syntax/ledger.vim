@@ -1,3 +1,8 @@
+" Vim syntax file
+" Language:     Ledger
+" Maintainer:   Matus Tejiscak <ziman@functor.sk>
+" Last Change:  1 July 2015
+
 if exists("b:current_syntax")
 	finish
 endif
@@ -37,4 +42,4 @@ hi link lgrAccount   Identifier
 hi link lgrNumber    Number
 hi link lgrCurrency  Type
 
-syn sync clear
+" syn sync clear
