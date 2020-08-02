@@ -25,15 +25,18 @@ syn match lgrTxEntry   /^ .*/ transparent contains=lgrAccount,lgrAmount
 syn match lgrTxComment /^ \+[#;].*/
 syn match lgrComment   /^[#;].*/
 
-syn match lgrAccount /[^ ]\+\( [^ ]\+\)*/ contained
+syn match lgrAccount /[^ ]\+\( [^ ]\+\)*/ contained contains=lgrUnknown
 syn match lgrAmount /-\?\d\+\(\.\d\+\)\?\( \a\+\)\?/ contained contains=lgrNumber,lgrCurrency
 syn match lgrNumber /-\?\d\+\(\.\d\+\)\?/ contained
 syn match lgrCurrency /\a\+/ contained
+
+syn match lgrUnknown /Unknown/
 
 hi link lgrDate      Statement
 hi link lgrType      Type
 hi link lgrClearing  Statement
 hi link lgrDescU     Todo
+hi link lgrUnknown   Todo
 hi link lgrDescC     PreProc
 
 hi link lgrComment   Comment
